@@ -10,7 +10,8 @@ let on_passed name expected_output string_of_output =
 let on_failed name expected_output observed_output string_of_output =
     print_endline ("Failed: " ^ name);
     print_endline ("Expected output: " ^ (string_of_output expected_output));
-    print_endline ("Observed output: " ^ (string_of_output observed_output));;
+    print_endline ("Observed output: " ^ (string_of_output observed_output));
+    failwith "stopping testing due to failure";;
 
 let test_single name test_function input expected_output string_of_output = 
     let observed_output = test_function input in
