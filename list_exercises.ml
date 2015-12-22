@@ -312,20 +312,3 @@ let sort_length items =
 
 
 
-(* tests *)
-
-let cases = [ [1; 1; 1; 2; 2; 3; 4]; [1; 2; 3; 4]; [1; 2]; [1]; []];;
-
-let test f g =
-    let print case = print_endline (g (f case)) in
-    List.iter print cases;;
-
-
-(* main *)
-
-let () =  
-    test (sublists 3) Printing.string_of_int_list_list;
-    ;;
-    
-
-
