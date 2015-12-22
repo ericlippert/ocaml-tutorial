@@ -91,6 +91,7 @@ let group_consecutive_duplicates items =
     | x :: xtail -> 
         match acc with
         | [] -> group_consecutive_duplicates_aux [[x]] xtail
+        | [] :: _ -> failwith "how did we get an empty list of duplicates?"
         | (a :: atail) :: acctail -> 
             if a = x then group_consecutive_duplicates_aux ((x :: a :: atail) :: acctail) xtail  
             else group_consecutive_duplicates_aux ([x] :: acc) xtail in
@@ -271,8 +272,9 @@ let rand_select n items =
                 acc 
             else 
                 let i = Random.int len in 
-                let (Some e) = (at i) xs in
-                rand_select_aux (e::acc) (remove_at i xs) (len - 1) (cur - 1) in
+                match (at i) xs with
+                | None -> failwith "random index outside range of list"
+                | (Some e) -> rand_select_aux (e :: acc) (remove_at i xs) (len - 1) (cur - 1) in
     rand_select_aux [] items (length items) n;;
             
 (* extract n numbers at random chosen from 1 to k *)
