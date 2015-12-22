@@ -49,3 +49,5 @@ let string_of_int_list_int_list_tuple =
 let string_of_int_list_int_list_tuple_list = 
     string_of_a_list string_of_int_list_int_list_tuple;;
 
+let string_of_int_int_tuple_option int_int_tuple_option = 
+    string_of_a_option string_of_int_int_tuple int_int_tuple_option;;
