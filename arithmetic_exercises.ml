@@ -65,7 +65,7 @@ let power x y =
             else power_aux (acc * x) (current - 1) in
         power_aux 1 y;;
         
-       
+(* A faster version of the totient function *)
 let phi_improved m =
     if m = 1 then   
         1
@@ -74,7 +74,15 @@ let phi_improved m =
             (fun product (count, factor) -> product * (factor - 1) * (power factor (count - 1)))
             1 (factorization m);;
         
+       
+(* All the primes between a and b, inclusive. *)
 let all_primes a b =
     List.filter is_prime (range a b);;
 
+(* the two primes that add to even number n *)
+let goldbach n =
+    let x = first_or_default (fun x -> (is_prime (n - x))) (all_primes 2 n) 0 in
+    (x, n - x);;
+    
+ 
 

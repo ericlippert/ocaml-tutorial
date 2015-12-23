@@ -33,6 +33,9 @@ let test_power3 () =
 
 let test_all_primes () =
     test_single "all_primes" (all_primes 10) 23 [11; 13; 17; 19; 23] string_of_int_list;;
+    
+let test_goldbach () =
+    test_many "goldbach" goldbach [4; 6; 8; 10; 12; 14] [(2, 2); (3, 3); (3, 5); (3, 7); (5, 7); (3, 11)] string_of_int_int_tuple;;
 
 let test_arithmetic () =
     test_is_prime ();
@@ -44,4 +47,5 @@ let test_arithmetic () =
     test_power1 ();
     test_power3 ();
     test_all_primes ();
+    test_goldbach ();
     ;;

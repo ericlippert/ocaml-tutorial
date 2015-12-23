@@ -312,5 +312,10 @@ let sort_length items =
 
 (* TODO: sort a list of lists according to the frequency of each length *)
 
-
-
+let rec first_or_default predicate items default =
+    match items with
+    | [] -> default
+    | item :: tail -> 
+        if predicate item then item
+        else first_or_default predicate tail default;;
+        
