@@ -24,11 +24,14 @@ let coprime a b =
 
 (* Euler's totient function is the number of integers less than m that are coprime to m *)
 let phi m = 
-    let rec phi_aux count current =
-        if current >= m then count
-        else if (coprime current m) then phi_aux (count + 1) (current + 1)
-        else phi_aux count (current + 1) in
-    phi_aux 0 2;;
+    if m = 1 then 
+        1
+    else 
+        let rec phi_aux count current =
+            if current >= m then count
+            else if (coprime current m) then phi_aux (count + 1) (current + 1)
+            else phi_aux count (current + 1) in
+    phi_aux 0 1;;
     
 (* is p a prime factor of n? It must be both prime and a factor *)
 let is_prime_factor p n = 
@@ -48,3 +51,27 @@ let factors n =
 let factorization n = 
     run_length_encode_to_tuples (factors n);;
        
+(* The integer power function computes x to the y. 
+   
+   Note that ** only does floats in ocaml. 
+   TODO: Not a very efficient algorithm; repeated squaring would be better. *)
+let power x y =
+    if x = 0 then (
+        if y = 0 then failwith "zero to the zero is undefined"
+        else 0)
+    else 
+        let rec power_aux acc current =
+            if current = 0 then acc
+            else power_aux (acc * x) (current - 1) in
+        power_aux 1 y;;
+        
+       
+let phi_improved m =
+    if m = 1 then   
+        1
+    else
+        List.fold_left 
+            (fun product (count, factor) -> product * (factor - 1) * (power factor (count - 1)))
+            1 (factorization m);;
+        
+
