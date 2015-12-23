@@ -1,8 +1,8 @@
 ocamlc -c printing.ml
 @if errorlevel 1 goto failure
-ocamlc -c arithmetic_exercises.ml
-@if errorlevel 1 goto failure
 ocamlc -c list_exercises.ml
+@if errorlevel 1 goto failure
+ocamlc -c arithmetic_exercises.ml
 @if errorlevel 1 goto failure
 ocamlc -c test_exercises.ml
 @if errorlevel 1 goto failure
