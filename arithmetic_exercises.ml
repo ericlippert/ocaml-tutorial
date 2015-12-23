@@ -28,7 +28,7 @@ let phi m =
         if current >= m then count
         else if (coprime current m) then phi_aux (count + 1) (current + 1)
         else phi_aux count (current + 1) in
-    phi_aux 0 1;;
+    phi_aux 0 2;;
     
 (* is p a prime factor of n? It must be both prime and a factor *)
 let is_prime_factor p n = 
@@ -41,7 +41,7 @@ let factors n =
         if current = remaining then current::acc
         else if (is_prime_factor current remaining) then factors_aux (current::acc) current (remaining / current)
         else factors_aux acc (current + 1) remaining in
-    if n = 1 then [1]
+    if n <= 1 then [1]
     else List.rev (factors_aux [] 2 n);;
     
 (* produce the prime factorization of a number as tuples counting each factor *)
