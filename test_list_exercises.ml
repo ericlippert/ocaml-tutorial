@@ -34,9 +34,7 @@ let test_at_1 () =
 let test_at_2 () =
     test_many "at 2" (at 2) standard_cases [Some 1; Some 3; None; None; None] string_of_int_option;;
 
-(* main *)
-    
-let () =  
+let test_list () =
     test_last ();
     test_last_but_one ();
     test_last_two ();
@@ -46,6 +44,3 @@ let () =
     
     test_length ();
     ;;
-    
-
-
