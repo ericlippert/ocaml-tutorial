@@ -84,15 +84,3 @@ let goldbach n =
     let x = first_or_default (fun x -> (is_prime (n - x))) (all_primes 2 n) 0 in
     (x, n - x);;
     
-    
-(* a sequence of the n-bit Gray codes *)
-let rec gray n =
-    if n = 0 then [""]
-    else let smaller = gray (n - 1) in
-    let first = List.map (fun x -> "0" ^ x) smaller in
-    let last = List.rev (List.map (fun x -> "1" ^ x) smaller) in
-    first @ last;
-    
-
-
-
