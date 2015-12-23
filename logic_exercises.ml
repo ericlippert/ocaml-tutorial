@@ -1,4 +1,27 @@
 (* logic exercises from OCaml tutorial *)
+type bool_expr =
+    | Var of string
+    | Not of bool_expr
+    | And of bool_expr * bool_expr
+    | Or of bool_expr * bool_expr;;
+    
+let table2 a_name b_name expression =
+    let rec evaluate a_value b_value expr =
+        match expr with
+        | Var name -> 
+            if name = a_name then a_value
+            else if name = b_name then b_value
+            else failwith "unexpected name"
+        | Not x -> not (evaluate a_value b_value x)
+        | And (x, y) -> (evaluate a_value b_value x ) && (evaluate a_value b_value y)
+        | Or (x, y) -> (evaluate a_value b_value x ) || (evaluate a_value b_value y) in
+    [ (true, true, evaluate true true expression); 
+    (true, false, evaluate true false expression); 
+    (false, true, evaluate false true expression); 
+    (false, false, evaluate false false expression)];;
+        
+
+(* TODO: Exercise generalizing to any number of variables *)
 
 (* a sequence of the n-bit Gray codes *)
 let rec gray n =
