@@ -31,6 +31,8 @@ let test_power1 () =
 let test_power3 () =
     test_many "power3" (fun x -> power x 3) (range 0 5) [0; 1; 8; 27; 64; 125] string_of_int;;
 
+let test_all_primes () =
+    test_single "all_primes" (all_primes 10) 23 [11; 13; 17; 19; 23] string_of_int_list;;
 
 let test_arithmetic () =
     test_is_prime ();
@@ -41,4 +43,5 @@ let test_arithmetic () =
     test_power0 ();
     test_power1 ();
     test_power3 ();
+    test_all_primes ();
     ;;

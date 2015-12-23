@@ -74,4 +74,7 @@ let phi_improved m =
             (fun product (count, factor) -> product * (factor - 1) * (power factor (count - 1)))
             1 (factorization m);;
         
+let all_primes a b =
+    List.filter is_prime (range a b);;
+
 
