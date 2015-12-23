@@ -1,3 +1,5 @@
+ocamlc -c priority_queue.ml
+@if errorlevel 1 goto failure
 ocamlc -c printing.ml
 @if errorlevel 1 goto failure
 ocamlc -c list_exercises.ml
@@ -14,7 +16,7 @@ ocamlc -c test_arithmetic_exercises.ml
 @if errorlevel 1 goto failure
 ocamlc -c test_logic_exercises.ml
 @if errorlevel 1 goto failure
-ocaml printing.cmo list_exercises.cmo arithmetic_exercises.cmo logic_exercises.cmo test_exercises.cmo test_list_exercises.cmo test_arithmetic_exercises.cmo test_logic_exercises.cmo tests.ml
+ocaml priority_queue.cmo printing.cmo list_exercises.cmo arithmetic_exercises.cmo logic_exercises.cmo test_exercises.cmo test_list_exercises.cmo test_arithmetic_exercises.cmo test_logic_exercises.cmo tests.ml
 @if errorlevel 1 goto failure
 exit
 :failure
