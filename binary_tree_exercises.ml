@@ -161,8 +161,36 @@ let rec max_height n =
            light side. Can we add a third and rearrange that into a tree of
            height 3? No. So the highest we can make a tree with 8 nodes is the 
            same as the highest we can make a tree with 7 nodes: 3 high. *)
-        
-        
+
+(* Given a tree, how many leaves are there? That is, nodes where both children are empty. *)        
+let rec count_leaves tree = 
+    match tree with
+    | Empty -> 0
+    | Node (_, Empty, Empty) -> 1
+    | Node (_, right, left ) -> (count_leaves left) + (count_leaves right);;
             
-            
-            
+(* Given a tree, construct a list that is the values stored in all the leaves *)
+
+let rec leaf_values tree = 
+    match tree with
+    | Empty -> []
+    | Node (value, Empty, Empty) -> [value]
+    | Node (_, left, right) -> (leaf_values left) @ (leaf_values right);; 
+    
+(* Given a tree, construct a list that is the values NOT stored in leaves *)
+
+let rec internal_values tree = 
+    match tree with
+    | Empty -> []
+    | Node (value, Empty, Empty) -> []
+    | Node (_, left, right) -> (internal_values left) @ (internal_values right);; 
+    
+(* Given a tree, construct a list that is all the values at nodes a certain level deep.
+   The root is level 1 *)
+
+let rec at_level level tree =
+    match tree with
+    | Empty -> []
+    | Node(value, left, right) -> 
+        if level = 1 then [value] 
+        else (at_level (level - 1) left) @ (at_level (level - 1) right);;
