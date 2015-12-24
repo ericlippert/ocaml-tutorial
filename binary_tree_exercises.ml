@@ -45,3 +45,15 @@ let rec cbal n =
     else 
         let some = cbal ((n - 1) / 2) in
         cross_join some some join;;
+        
+(* Given two binary trees, is one a mirror image of the other? *)
+        
+let rec is_mirror_image x y =
+    match (x, y) with
+    | (Empty, Empty) -> true
+    | (Node (_, xleft, xright), Node (_, yleft, yright)) -> 
+        (is_mirror_image xleft yright) && (is_mirror_image xright yleft)
+    | _ -> false;;
+        
+let is_symmetrical x =
+    is_mirror_image x x;;
