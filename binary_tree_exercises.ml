@@ -68,3 +68,20 @@ let rec construct_search_tree values =
             else tree in
     List.fold_left insert Empty values;;
             
+           
+ (* A height-balanced tree is like a complete tree, except that the property
+    held throughout is that the longest path to a leaf on both sides differs
+    by no more than one. *)
+    
+(* Enumerate all the height-balanced trees of a given height *)
+let rec all_height_balanced_trees h =
+    let join x y = Node (0, x, y) in
+    if h = 0 then 
+        [ Empty ]
+    else if h = 1 then
+        [ Node (0, Empty, Empty) ]
+    else  
+        let one_less = all_height_balanced_trees (h - 1) in
+        let two_less = all_height_balanced_trees (h - 2) in
+        (cross_join one_less two_less join) @ (cross_join two_less one_less join) @ (cross_join one_less one_less join);;
+        
