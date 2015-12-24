@@ -57,3 +57,14 @@ let rec is_mirror_image x y =
         
 let is_symmetrical x =
     is_mirror_image x x;;
+    
+let rec construct_search_tree values =
+    let rec insert tree value = 
+        match tree with
+        | Empty -> Node (value, Empty, Empty)
+        | Node (oldvalue, oldleft, oldright) -> 
+            if value < oldvalue then Node(oldvalue, (insert oldleft value), oldright)
+            else if value > oldvalue then Node(oldvalue, oldleft, (insert oldright value))
+            else tree in
+    List.fold_left insert Empty values;;
+            
