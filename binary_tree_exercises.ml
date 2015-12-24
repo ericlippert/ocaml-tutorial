@@ -85,3 +85,9 @@ let rec all_height_balanced_trees h =
         let two_less = all_height_balanced_trees (h - 2) in
         (cross_join one_less two_less join) @ (cross_join two_less one_less join) @ (cross_join one_less one_less join);;
         
+(* What is the smallest number of nodes that can be in a height-balanced tree of given height? *)
+let rec min_nodes h =
+    if h = 0 then 0
+    else if h = 1 then 1
+    else 1 + min_nodes (h - 2) + min_nodes(h - 1);;
+    
